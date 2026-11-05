@@ -1,0 +1,11 @@
+# Build generated files
+build/
+*.xcworkspace
+.DS_Store
+
+# Xcode user-specific
+*.xcuserstate
+xcuserdata/
+
+# Swift Package Manager
+.swiftpm/

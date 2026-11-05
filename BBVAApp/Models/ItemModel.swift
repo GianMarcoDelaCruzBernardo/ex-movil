@@ -1,0 +1,22 @@
+import Foundation
+enum ItemCategory: String, CaseIterable, Identifiable, Hashable { case cuentas = "Cuentas", tarjetas = "Tarjetas", creditos = "Créditos", seguros = "Seguros", inversion = "Inversión"; var id: String { rawValue } }
+struct ItemAttribute: Identifiable, Hashable { let label: String; let value: String; let symbol: String; var id: String { label } }
+struct ItemModel: Identifiable, Hashable {
+    let id: String; let name: String; let subtitle: String; let symbol: String; let category: ItemCategory; let summary: String; let rate: String; let fee: String; let requirement: String; let benefit: String
+    var attributes: [ItemAttribute] { [ItemAttribute(label: "Tasa / rendimiento", value: rate, symbol: "percent"), ItemAttribute(label: "Costo", value: fee, symbol: "tag"), ItemAttribute(label: "Requisito", value: requirement, symbol: "checklist"), ItemAttribute(label: "Beneficio", value: benefit, symbol: "sparkles")] }
+}
+extension ItemModel {
+    static let catalog: [ItemModel] = [
+        ItemModel(id: "cta-sueldo", name: "Cuenta Sueldo", subtitle: "Tu sueldo, sin comisiones", symbol: "banknote.fill", category: .cuentas, summary: "Recibe tu sueldo y administra tu dinero.", rate: "TREA 0.30%", fee: "S/ 0 de mantenimiento", requirement: "Abono de planilla", benefit: "Retiros sin costo"),
+        ItemModel(id: "cta-meta", name: "Cuenta Meta", subtitle: "Ahorra con un objetivo claro", symbol: "flag.fill", category: .cuentas, summary: "Define una meta y deja que tu ahorro se programe solo.", rate: "TREA 2.10%", fee: "S/ 0 mensual", requirement: "DNI vigente", benefit: "Ahorro automático"),
+        ItemModel(id: "tc-platinum", name: "Tarjeta Platinum", subtitle: "Experiencias y puntos en cada viaje", symbol: "creditcard.fill", category: .tarjetas, summary: "Acumulas puntos y accedes a salas VIP.", rate: "TEA desde 49.9%", fee: "S/ 120 anual", requirement: "Ingresos desde S/ 3,500", benefit: "Salas VIP"),
+        ItemModel(id: "td-aqua", name: "Tarjeta Débito Aqua", subtitle: "Compras seguras y contactless", symbol: "creditcard", category: .tarjetas, summary: "Paga con tu dinero disponible.", rate: "Sin intereses", fee: "S/ 0 de emisión", requirement: "Cuenta activa", benefit: "Bloqueo desde la app"),
+        ItemModel(id: "pr-libre", name: "Préstamo Libre Disponibilidad", subtitle: "Dinero para tu próximo proyecto", symbol: "dollarsign.circle.fill", category: .creditos, summary: "Financia con cuotas fijas.", rate: "TEA desde 14.5%", fee: "Sin comisión", requirement: "6 meses antigüedad", benefit: "Cuotas hasta 60 meses"),
+        ItemModel(id: "hip", name: "Crédito Hipotecario", subtitle: "Tu primer hogar, paso a paso", symbol: "house.fill", category: .creditos, summary: "Acompañamiento para comprar tu vivienda.", rate: "TEA desde 8.9%", fee: "Seguro de desgravamen", requirement: "Cuota inicial 10%", benefit: "Plazos hasta 25 años"),
+        ItemModel(id: "veh", name: "Crédito Vehicular", subtitle: "Estrena auto con cuotas fijas", symbol: "car.fill", category: .creditos, summary: "Solicita el crédito en línea.", rate: "TEA desde 11.9%", fee: "Seguro requerido", requirement: "Cuota inicial 20%", benefit: "Aprobación en línea"),
+        ItemModel(id: "seg-vida", name: "Seguro de Vida", subtitle: "Protección para los tuyos", symbol: "heart.text.square.fill", category: .seguros, summary: "Cobertura ante fallecimiento e invalidez.", rate: "Prima desde S/ 18/mes", fee: "Sin costo de afiliación", requirement: "18 a 65 años", benefit: "Cobertura accidentes"),
+        ItemModel(id: "seg-veh", name: "Seguro Vehicular", subtitle: "Tu auto, siempre cubierto", symbol: "shield.lefthalf.filled", category: .seguros, summary: "Cobertura contra choques y robo.", rate: "Prima desde S/ 95/mes", fee: "Deducible según plan", requirement: "Vehículo hasta 10 años", benefit: "Asistencia 24/7"),
+        ItemModel(id: "fm", name: "Fondo Mutuo Renta Flexible", subtitle: "Haz crecer tu dinero", symbol: "chart.line.uptrend.xyaxis", category: .inversion, summary: "Invierte con especialistas.", rate: "Rentabilidad 4.2%", fee: "Comisión 1.2% anual", requirement: "Mínimo S/ 500", benefit: "Rescate 48h"),
+        ItemModel(id: "dpf", name: "Depósito a Plazo", subtitle: "Rentabilidad fija y segura", symbol: "lock.fill", category: .inversion, summary: "Fija tu capital por el plazo que elijas.", rate: "TREA hasta 5.0%", fee: "Sin comisiones", requirement: "Mínimo S/ 1,000", benefit: "Plazos 30 a 360 días")
+    ]
+}
